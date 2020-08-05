@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Authentication\LoginRequest;
 use App\Http\Requests\Authentication\RegistrationRequest;
+use App\University;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -16,7 +17,7 @@ class AuthenticationController extends Controller
      */
     public function gate(): Response
     {
-        return response()->view("authentication.gate");
+        return response()->view("authentication.gate", ["universities" => University::all()]);
     }
 
     /**
