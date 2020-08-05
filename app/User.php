@@ -23,6 +23,9 @@ class User extends Authenticatable
         "remember_token",
     ];
 
+    /**
+     * @return BelongsTo
+     */
     public function university(): BelongsTo
     {
         return $this->belongsTo(University::class);
