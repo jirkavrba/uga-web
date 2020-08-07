@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="text-white">Password</label>
+                        <label for="password" class="text-white">Heslo</label>
                         <input class="form-control" type="password" name="password" id="password" required>
                     </div>
 

@@ -17,7 +17,7 @@ class RegistrationRequest extends FormRequest
             "name" => ["required", "string", "min:3"],
             "email" => ["required", "unique:users", "email"],
             "password" => ["required", "min:6", "confirmed"],
-            "university_id" => ["required", "exists:universities"],
+            "university_id" => ["required", "exists:universities,id"],
         ];
     }
 }

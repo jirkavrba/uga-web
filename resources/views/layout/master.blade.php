@@ -11,11 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-{{--    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.css">--}}
-
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    <script src="https://kit.fontawesome.com/926e679c11.js" crossorigin="anonymous"></script>
+<!-- JS, Popper.js, and jQuery --> <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -81,15 +78,24 @@
             <ul class="navbar-nav ml-auto">
                 @auth
                     <li class="nav-item">
-                        <div class="nav-link">{{ auth()->user()->name }}</div>
+                        <div class="nav-link disabled">
+                            <i class="fas fa-user mr-1"></i>
+                            {{ auth()->user()->name }}
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-sign-out-alt mr-1"></i>
+                            Odhlásit se
+                        </a>
                     </li>
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('authentication.gate') }}"
-                           tabindex="-1">Přihlášení / Registrace</a>
+                           tabindex="-1">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Přihlášení / Registrace
+                        </a>
                     </li>
                 @endauth
             </ul>
@@ -97,6 +103,18 @@
     </div>
 </nav>
 <main>
+    @if ($errors->any())
+        <div class="mt-5 container">
+            <div class="alert alert-danger border-0">
+                <b class="title">Došlo k chybám</b><br>
+                <hr>
+                @foreach($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                    @unless($loop->last) <br> @endunless
+                @endforeach
+            </div>
+        </div>
+    @endif
     <div class="mt-5">
         @yield("content")
     </div>

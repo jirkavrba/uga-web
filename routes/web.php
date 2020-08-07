@@ -31,5 +31,5 @@ Route::middleware(RedirectIfAuthenticated::class)
 
 Route::middleware(Authenticate::class)
     ->group(function () {
-        Route::get("/authentication-check", function () { return "Authenticated."; });
+        Route::get("/authentication/logout", [AuthenticationController::class, "logout"])->name("authentication.logout");
     });
