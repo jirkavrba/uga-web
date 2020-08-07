@@ -9,6 +9,6 @@ class PresentationController extends Controller
     public function index()
     {
         // Todo: add dynamic content
-        return response()->view("index");
+        return response()->view("presentation.index");
     }
 }
