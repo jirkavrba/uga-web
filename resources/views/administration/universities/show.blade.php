@@ -58,5 +58,26 @@
                 </table>
             </div>
         </div>
+        @if ($universities->count() > 1)
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="{{ route("administration.universities.destroy", $university->id) }}" method="post">
+                        @csrf
+                        @method("delete")
+                        <h4 class="text-danger">Smazat {{ $university->name }}</h4>
+                        <div class="form-group">
+                            <label for="university_id">Přesunout všechny uživatele do</label>
+                            <select name="university_id" id="university_id" class="form-control">
+                                @foreach($universities->filter(fn ($item) => $item->id !== $university->id) as $option)
+                                    <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button onclick="return confirm('Opravdu smazat {{ $university->name }}? Tato akce je nevratná.');" class="btn btn-danger">Smazat</button>
+                    </form>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
