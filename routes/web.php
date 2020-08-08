@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\RequiresAdminPrivileges;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +34,11 @@ Route::middleware(RedirectIfAuthenticated::class)
 Route::middleware(Authenticate::class)
     ->group(function () {
         Route::get("/authentication/logout", [AuthenticationController::class, "logout"])->name("authentication.logout");
+    });
+
+Route::middleware(RequiresAdminPrivileges::class)
+    ->prefix("/administration")
+    ->name("administration.")
+    ->group(function () {
+        Route::get("/", [AdministrationController::class, "index"])->name("index");
     });

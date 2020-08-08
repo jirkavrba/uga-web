@@ -12,7 +12,9 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/926e679c11.js" crossorigin="anonymous"></script>
-<!-- JS, Popper.js, and jQuery --> <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -26,6 +28,10 @@
             background: #7289DA;
         }
 
+        .bg-admin {
+            background: #dd5555;
+        }
+
         .text-discord {
             color: #7289DA;
         }
@@ -33,7 +39,7 @@
 </head>
 <body>
 @section("header")
-    <header class="bg-discord">
+    <header class="@admin bg-danger @else bg-discord @endadmin">
         <div class="container pb-2 pt-5">
             <div class="row d-flex align-items-center">
                 <div class="col-sm-12 col-md-6 text-center text-md-left">
@@ -44,7 +50,7 @@
         </div>
     </header>
 @show
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+<nav class="navbar navbar-expand-lg navbar-dark @admin bg-admin @else bg-dark @endadmin text-white">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent"
@@ -62,17 +68,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Akce</a>
                 </li>
+
+                @admin
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("administration.index") }}">
+                        <i class="fas fa-lock fa-xs mr-1"></i>
+                        Správa webu
+                    </a>
+                </li>
+                @endadmin
             </ul>
             <ul class="navbar-nav ml-auto">
                 @auth
                     <li class="nav-item">
-                        <div class="nav-link disabled">
+                        <div class="nav-link">
                             <i class="fas fa-user mr-1"></i>
                             {{ auth()->user()->name }}
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("authentication.logout") }}" tabindex="-1" aria-disabled="true">
+                        <a class="nav-link" href="{{ route("authentication.logout") }}" tabindex="-1"
+                           aria-disabled="true">
                             <i class="fas fa-sign-out-alt mr-1"></i>
                             Odhlásit se
                         </a>

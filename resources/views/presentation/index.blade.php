@@ -1,7 +1,7 @@
 @extends("layout.master")
 
 @section("header")
-    <header style="background: #7289DA;">
+    <header class="@admin bg-danger @else bg-discord @endadmin">
         <div class="container py-5">
             <div class="row d-flex flex-column flex-md-row align-items-center align-items-md-center">
                 <div class="flex-grow-1 text-center text-md-left">
