@@ -21,7 +21,7 @@ class RequiresAdminPrivileges
     {
         if (!Auth::check() || !Auth::user()->is_admin)
         {
-            throw new AuthorizationException();
+            return redirect()->route("authentication.gate");
         }
 
         return $next($request);

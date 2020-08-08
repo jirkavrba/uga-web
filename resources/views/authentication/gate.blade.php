@@ -56,12 +56,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="university">University</label>
+                        <label for="university">Univerzita</label>
                         <select name="university_id" id="university" class="form-control">
                             @foreach($universities as $university)
                                 <option value="{{ $university->id }}">{{ $university->name }}</option>
                             @endforeach
                         </select>
+                        <small>Není tu vaše univerzita? Napište nám na <a href="https://discord.gg/BpuFRRB" target="_blank">Discordu</a> a my ji přidáme.</small>
                     </div>
 
                     <hr>

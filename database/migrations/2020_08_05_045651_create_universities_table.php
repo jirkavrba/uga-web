@@ -17,7 +17,7 @@ class CreateUniversitiesTable extends Migration
             $table->id();
             $table->string("name")->unique();
             $table->string("color");
-            $table->string("logo_url");
+            $table->string("logo_url")->nullable();
             $table->timestamps();
         });
     }
