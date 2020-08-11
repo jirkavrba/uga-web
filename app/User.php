@@ -30,4 +30,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(University::class);
     }
+
+    public function gravatar(int $size = 100): string
+    {
+        return "https://s.gravatar.com/avatar/" . md5($this->email) . "?s=" . $size;
+    }
 }

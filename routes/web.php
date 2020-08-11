@@ -4,6 +4,7 @@ use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\RequiresAdminPrivileges;
@@ -42,5 +43,7 @@ Route::middleware(RequiresAdminPrivileges::class)
     ->name("administration.")
     ->group(function () {
         Route::get("/", [AdministrationController::class, "index"])->name("index");
+
         Route::resource("universities", UniversityController::class);
+        Route::resource("users", UserController::class);
     });

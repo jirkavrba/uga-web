@@ -16,9 +16,9 @@
             <div class="col-sm-12 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Správa univerzit</h5>
-                        <p class="card-text">Celkem registrováno <b>{{ $universities }}</b> univerzit.</p>
-                        <a href="#" class="btn btn-primary">Správa</a>
+                        <h5 class="card-title">Správa uživatelů</h5>
+                        <p class="card-text">Celkem registrováno <b>{{ $users }}</b> uživatelů.</p>
+                        <a href="{{ route("administration.users.index") }}" class="btn btn-primary">Správa</a>
                     </div>
                 </div>
             </div>
